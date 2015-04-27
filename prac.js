@@ -1182,3 +1182,39 @@ function NumberSearch(str) {
   }
   return Math.round(total / numOfChars);    
 }
+
+// Using the JavaScript language, have the function TripleDouble(num1,num2) take both parameters being passed, 
+// and return 1 if there is a straight triple of a number at any place in num1 and also a straight double of 
+// the same number in num2. For example: if num1 equals 451999277 and num2 equals 41177722899, then return 1 
+// because in the first parameter you have the straight triple 999 and you have a straight double, 99, of the 
+// same number in the second parameter. If this isn't the case, return 0. 
+
+function TripleDouble(num1,num2) { 
+  num1 = num1.toString().split("");
+  num2 = num2.toString().split("");
+  var flag1 = false;
+  var flag2 = false;
+  var matchNum1 = -1;
+  var matchNum2 = -2;
+  for (var i = 0; i < num1.length; i++){
+    if(num1[i] === num1[i+1] && num1[i] === num1[i+2]){
+      flag1 = true;
+      matchNum1 = num1[i];
+      break;
+    }
+  }
+  for (var i = 0; i < num2.length; i++){
+    if(num2[i] === num2[i+1]){
+      flag2 = true;
+      matchNum2 = num2[i];
+      break;
+    }
+  }
+
+  if(flag1 === flag2 && matchNum1 === matchNum2){
+    return 1;
+  }
+  else {
+    return 0;
+  } 
+}
