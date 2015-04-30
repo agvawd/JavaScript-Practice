@@ -1218,3 +1218,79 @@ function TripleDouble(num1,num2) {
     return 0;
   } 
 }
+
+// Using the JavaScript language, have the function BracketMatcher(str) take the str parameter being passed and 
+// return 1 if the brackets are correctly matched and each one is accounted for. Otherwise return 0. For example: 
+// if str is "(hello (world))", then the output should be 1, but if str is "((hello (world))" the the output 
+// should be 0 because the brackets do not correctly match up. Only "(" and ")" will be used as brackets. If str 
+// contains no brackets return 1. 
+
+// function BracketMatcher(str) { 
+//   str = str.split("");
+//   for(var i = 0; i < str.length; i++){
+//     if(str[i] === "("){
+//       for(var j = i; j < str.length; j++){
+//         if(str[j] === ")"){
+//           console.log("match!");
+//           break;
+//         }
+//       }
+//     }
+//     else if (str[i] === ")"){
+//       return 0;
+//     }
+//   }
+//   return 1;
+// }
+
+function BracketMatcher(str) { 
+  str = str.split("");
+  var bracketArray = [];
+  for(var i = 0; i < str.length; i++){
+    if (str[i] === "(" || str[i] === ")"){
+      bracketArray.push(str[i]);
+    }
+  }
+
+  bracketArray = bracketArray.join("");
+  while (bracketArray.indexOf("()") !== -1) {
+    bracketArray = bracketArray.split("()").join("");
+  }
+
+  return bracketArray === "" ? 1 : 0;
+}
+
+// Using the JavaScript language, have the function StringReduction(str) take the str parameter being passed 
+// and return the smallest number you can get through the following reduction method. The method is: Only the 
+// letters a, b, and c will be given in str and you must take two different adjacent characters and replace 
+// it with the third. For example "ac" can be replaced with "b" but "aa" cannot be replaced with anything. 
+// This method is done repeatedly until the string cannot be further reduced, and the length of the resulting 
+// string is to be outputted. For example: if str is "cab", "ca" can be reduced to "b" and you get "bb" (you 
+// can also reduce it to "cc"). The reduction is done so the output should be 2. If str is "bcab", "bc" 
+// reduces to "a", so you have "aab", then "ab" reduces to "c", and the final string "ac" is reduced to "b" 
+// so the output should be 1.
+
+function StringReduction(str) { 
+  debugger;
+  while (str.indexOf("ab") !== -1 || str.indexOf("bc") !== -1 || str.indexOf("ac") !== -1 || str.indexOf("ba") !== -1 || str.indexOf("cb") !== -1 || str.indexOf("ca") !== -1){
+    if(str.indexOf("ab") !== -1){
+      str = str.replace("ab", "c");
+    }
+    else if (str.indexOf("bc") !== -1){
+      str = str.replace("bc", "a")
+    }
+    else if (str.indexOf("ac") !== -1){
+      str = str.replace("ac", "b");
+    }
+    else if (str.indexOf("ba") !== -1){
+      str = str.replace("ba", "c")
+    }
+    else if (str.indexOf("cb") !== -1){
+      str = str.replace("cb", "a")
+    }
+    else if (str.indexOf("ca") !== -1){
+      str = str.replace("ca", "b")
+    }
+  }
+  return str.length;
+}
